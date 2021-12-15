@@ -17,7 +17,7 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -112,30 +112,71 @@
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QPushButton" name="criar_contato">
-        <property name="text">
-         <string>Criar contato</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../assets/icons/plus.png</normaloff>../assets/icons/plus.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
-     <widget class="QStackedWidget" name="stackedWidget"/>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="criar_contato">
+          <property name="text">
+           <string>Criar contato</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../assets/icons/plus.png</normaloff>../assets/icons/plus.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="lixeira">
+          <property name="text">
+           <string>Lixeira</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../assets/icons/trash.png</normaloff>../assets/icons/trash.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

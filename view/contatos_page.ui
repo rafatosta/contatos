@@ -14,6 +14,12 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="4">
@@ -131,7 +137,11 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <layout class="QVBoxLayout" name="painel_contatos"/>
+        <layout class="QVBoxLayout" name="painel_contatos">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+        </layout>
        </item>
       </layout>
      </widget>

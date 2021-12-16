@@ -22,3 +22,5 @@ class CardContatos(QWidget):
         self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
                                "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
                                "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
+        
+        

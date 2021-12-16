@@ -174,7 +174,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QStackedWidget" name="stackedWidget"/>
+       <widget class="QStackedWidget" name="painel"/>
       </item>
      </layout>
     </item>

@@ -134,6 +134,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>Criar contato</string>
           </property>
@@ -177,6 +180,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButton">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="text">
            <string>Contatos</string>
           </property>
@@ -205,6 +211,9 @@
             <width>200</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="text">
            <string>Lixeira</string>

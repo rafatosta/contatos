@@ -9,6 +9,10 @@ class MainWindow(QMainWindow):
         
         #insere a pág. de contatos na posição zero
         self.painel.insertWidget(0, ContatosPage())
+
+        #inicia a janela princial fullscreen
+        #screen = QDesktopWidget().screenGeometry()
+        #self.setGeometry(0, 0, screen.width(), screen.height())  
     
         #evento do botão
         self.criar_contato.clicked.connect(self.show_criar_contatos)

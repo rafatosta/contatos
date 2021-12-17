@@ -24,9 +24,10 @@ class CriarContatoPage(QWidget):
         email = self.email.text()
         telefone = self.telefone.text()
         obs = self.obs.text()
+        fav = 0
         # cria novo objeto contatos
         novo = Contatos(None, nome, sobrenome, emp,
-                        cargo, email, telefone, obs)
+                        cargo, email, telefone, obs, fav)
 
         # insere no banco de dados
         contato_dao.insert(novo)

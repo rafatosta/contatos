@@ -53,7 +53,7 @@
          <enum>QFrame::Box</enum>
         </property>
         <property name="text">
-         <string>x</string>
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

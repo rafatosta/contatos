@@ -11,7 +11,8 @@ class CardContatos(QWidget):
         self.contato = contato
         self.mainWindow = mainWindow
         # pega a primeira letra da string
-        self.icon.setText(contato.nome[0])
+        if contato.nome != "":
+            self.icon.setText(contato.nome[0])
         self.nome.setText(contato.nome + ' '+contato.sobrenome)
         self.email.setText(contato.email)
         self.telefone.setText(contato.telefone)
@@ -32,6 +33,8 @@ class CardContatos(QWidget):
         # eventos dos botões
         self.excluir_btn.clicked.connect(self.remover)
         self.fav.toggled.connect(self.update_fav)
+        self.editar_btn.clicked.connect(self.mousePressEvent)
+        
 
     def remover(self):
         contato_dao.update_lixeira(self.contato.id, deletado=1)
@@ -39,4 +42,8 @@ class CardContatos(QWidget):
         self.mainWindow.show_contatos_page()
 
     def update_fav(self):
-        contato_dao.update_favorito(self.contato.id, int(self.fav.isChecked()))
+        self.contato.favorito = int(self.fav.isChecked())
+        contato_dao.update_favorito(self.contato.id, self.contato.favorito)
+
+    def mousePressEvent(self, event):
+        self.mainWindow.show_criar_contatos(self.contato)

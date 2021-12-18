@@ -19,9 +19,9 @@ class MainWindow(QMainWindow):
         self.criar_contato.clicked.connect(self.show_criar_contatos)
         self.contatos_btn.clicked.connect(self.show_contatos_page)
 
-    def show_criar_contatos(self):
+    def show_criar_contatos(self, contato=None):
         # self -> a própria classe (MainWindow)
-        self.painel.insertWidget(1, CriarContatoPage(self))
+        self.painel.insertWidget(1, CriarContatoPage(self, contato))
         self.painel.setCurrentIndex(1)
 
     def show_contatos_page(self):

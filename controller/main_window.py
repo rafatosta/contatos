@@ -17,6 +17,7 @@ class MainWindow(QMainWindow):
 
         # evento do botão
         self.criar_contato.clicked.connect(self.show_criar_contatos)
+        self.contatos_btn.clicked.connect(self.show_contatos_page)
 
     def show_criar_contatos(self):
         # self -> a própria classe (MainWindow)

@@ -21,6 +21,9 @@ class CardContatos(QWidget):
         style_sheet = f'border: 1px solid {cor}; border-radius: 25px; background-color: {cor};'
         self.icon.setStyleSheet(style_sheet)
 
+        # valor do checkbox
+        self.fav.setChecked(contato.favorito)
+
         # estilo do favorito
         self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
                                "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
@@ -28,8 +31,12 @@ class CardContatos(QWidget):
 
         # eventos dos botões
         self.excluir_btn.clicked.connect(self.remover)
+        self.fav.toggled.connect(self.update_fav)
 
     def remover(self):
         contato_dao.update_lixeira(self.contato.id, deletado=1)
         # carrega os dados no mainwindow
         self.mainWindow.show_contatos_page()
+
+    def update_fav(self):
+        contato_dao.update_favorito(self.contato.id, int(self.fav.isChecked()))

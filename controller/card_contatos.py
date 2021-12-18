@@ -1,12 +1,15 @@
 from qt_core import *
 from assets.color import getColor
+import model.contato_dao as contato_dao
 
 
 class CardContatos(QWidget):
-    def __init__(self, contato):
+    def __init__(self, contato, mainWindow):
         super().__init__()
         uic.loadUi('view/card_contatos.ui', self)
 
+        self.contato = contato
+        self.mainWindow = mainWindow
         # pega a primeira letra da string
         self.icon.setText(contato.nome[0])
         self.nome.setText(contato.nome + ' '+contato.sobrenome)
@@ -22,5 +25,11 @@ class CardContatos(QWidget):
         self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
                                "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
                                "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
-        
-        
+
+        # eventos dos botões
+        self.excluir_btn.clicked.connect(self.remover)
+
+    def remover(self):
+        contato_dao.update_lixeira(self.contato.id, deletado=1)
+        # carrega os dados no mainwindow
+        self.mainWindow.show_contatos_page()

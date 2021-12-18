@@ -1,3 +1,4 @@
+from controller.delete_dialog import DeleteDialog
 from qt_core import *
 from assets.color import getColor
 import model.contato_dao as contato_dao
@@ -29,16 +30,19 @@ class CardContatos(QWidget):
                                "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
                                "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
 
-
         # eventos dos botões
         self.excluir_btn.clicked.connect(self.remover)
         self.fav.toggled.connect(self.update_fav)
         self.editar_btn.clicked.connect(self.mousePressEvent)
 
     def remover(self):
-        contato_dao.update_lixeira(self.contato.id, deletado=1)
-        # carrega os dados no mainwindow
-        self.mainWindow.show_contatos_page()
+        dlg = DeleteDialog()
+        if dlg.exec():
+            contato_dao.update_lixeira(self.contato.id, deletado=1)
+            # carrega os dados no mainwindow
+            self.mainWindow.show_contatos_page()
+        else:
+            pass
 
     def update_fav(self):
         self.contato.favorito = int(self.fav.isChecked())

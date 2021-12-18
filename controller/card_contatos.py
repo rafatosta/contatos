@@ -18,8 +18,7 @@ class CardContatos(QWidget):
         self.telefone.setText(contato.telefone)
 
         # determina o estilo do label
-        cor = getColor()  # gera uma cor aleatória
-        style_sheet = f'border: 1px solid {cor}; border-radius: 25px; background-color: {cor};'
+        style_sheet = f'border: 1px solid {self.contato.cor}; border-radius: 25px; background-color: {self.contato.cor};'
         self.icon.setStyleSheet(style_sheet)
 
         # valor do checkbox
@@ -34,7 +33,6 @@ class CardContatos(QWidget):
         self.excluir_btn.clicked.connect(self.remover)
         self.fav.toggled.connect(self.update_fav)
         self.editar_btn.clicked.connect(self.mousePressEvent)
-        
 
     def remover(self):
         contato_dao.update_lixeira(self.contato.id, deletado=1)
@@ -44,6 +42,10 @@ class CardContatos(QWidget):
     def update_fav(self):
         self.contato.favorito = int(self.fav.isChecked())
         contato_dao.update_favorito(self.contato.id, self.contato.favorito)
+        self.mainWindow.show_contatos_page()
 
     def mousePressEvent(self, event):
         self.mainWindow.show_criar_contatos(self.contato)
+
+    def __copy__(self):
+        return self

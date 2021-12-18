@@ -18,7 +18,7 @@ class CardContatos(QWidget):
         self.telefone.setText(contato.telefone)
 
         # determina o estilo do label
-        style_sheet = f'border: 1px solid {self.contato.cor}; border-radius: 25px; background-color: {self.contato.cor};'
+        style_sheet = f'border: filed; border-radius: 25px; background-color: {self.contato.cor};'
         self.icon.setStyleSheet(style_sheet)
 
         # valor do checkbox
@@ -28,6 +28,7 @@ class CardContatos(QWidget):
         self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
                                "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
                                "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
+
 
         # eventos dos botões
         self.excluir_btn.clicked.connect(self.remover)

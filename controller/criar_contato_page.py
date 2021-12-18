@@ -39,7 +39,7 @@ class CriarContatoPage(QWidget):
 
         # determina o estilo do label
         cor = getColor()  # gera uma cor aleatória
-        style_sheet = f'border: 1px solid {cor}; border-radius: 50px; background-color: {cor};'
+        style_sheet = f'border: filed; border-radius: 50px; background-color: {cor};'
         self.img.setStyleSheet(style_sheet)
         if self.contato.nome != "":
             self.img.setText(self.contato.nome[0])

@@ -72,6 +72,20 @@ def delete(id):  # deleta
         conn.close()
 
 
+def deleteLixeiraAll():
+    # esvazia lixeira
+    try:
+        conn = database.connect()
+        cursor = conn.cursor()
+        sql = """DELETE FROM Contatos WHERE deletado=1;"""
+        cursor.execute(sql)
+        conn.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        conn.close()
+
+
 def selectAll():  # pega todos
     lista = []
     try:
@@ -79,6 +93,29 @@ def selectAll():  # pega todos
         cursor = conn.cursor()
         # ORDER BY -> ordenar por
         sql = """SELECT * FROM Contatos WHERE deletado = 0 ORDER BY upper(nome);"""
+        cursor.execute(sql)
+        result = cursor.fetchall()  # retorna uma lista com os dados de cada contato
+        for r in result:
+            # exemplo de como pegar os dados retornados
+            #id = r[0]
+            #nome = r[1]
+            novo_contato = Contatos(
+                r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9])
+            lista.append(novo_contato)
+    except Exception as e:
+        print(e)
+    finally:
+        conn.close()
+    return lista
+
+
+def selectDeletedAll():  # pega todos
+    lista = []
+    try:
+        conn = database.connect()
+        cursor = conn.cursor()
+        # ORDER BY -> ordenar por
+        sql = """SELECT * FROM Contatos WHERE deletado = 1 ORDER BY upper(nome);"""
         cursor.execute(sql)
         result = cursor.fetchall()  # retorna uma lista com os dados de cada contato
         for r in result:

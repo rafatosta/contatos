@@ -5,42 +5,60 @@ import model.contato_dao as contato_dao
 
 
 class CardContatos(QWidget):
-    def __init__(self, contato, mainWindow):
+    def __init__(self, contato, mainWindow=None):
         super().__init__()
         uic.loadUi('view/card_contatos.ui', self)
 
         self.contato = contato
         self.mainWindow = mainWindow
+
         # pega a primeira letra da string
         if contato.nome != "":
             self.icon.setText(contato.nome[0])
-        self.nome.setText(contato.nome + ' '+contato.sobrenome)
-        self.email.setText(contato.email)
-        self.telefone.setText(contato.telefone)
+        self.nome.setText(contato.nome[:20] + ' '+contato.sobrenome)
 
         # determina o estilo do label
         style_sheet = f'border: filed; border-radius: 25px; background-color: {self.contato.cor};'
         self.icon.setStyleSheet(style_sheet)
 
-        # valor do checkbox
-        self.fav.setChecked(contato.favorito)
+        # se não tiver a referência do mainWindow, ocultar os botões de ação
+        if mainWindow == None:  # lixeira
+            self.fav.hide()
+            self.editar_btn.hide()
+            self.excluir_btn.hide()
 
-        # estilo do favorito
-        self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
-                               "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
-                               "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
+            self.frame.setStyleSheet("")
+            self.frame.setCursor(Qt.ArrowCursor)
 
-        # eventos dos botões
-        self.excluir_btn.clicked.connect(self.remover)
-        self.fav.toggled.connect(self.update_fav)
-        self.editar_btn.clicked.connect(self.mousePressEvent)
+            # evento do botão recuperar
+            self.recuperar.clicked.connect(self.recuperar_contato)
+        else:  # janela de contatod
+
+            # preenche as informações sobre o contato
+            self.email.setText(contato.email)
+            self.telefone.setText(contato.telefone)
+
+            # oculta o botão de restaurar
+            self.rec_widget.hide()
+
+            # valor do checkbox
+            self.fav.setChecked(contato.favorito)
+
+            # estilo do favorito
+            self.fav.setStyleSheet("QCheckBox::indicator {width: 30px;height: 30px;}"
+                                   "QCheckBox::indicator:checked {image: url(assets/icons/star-checked.png);}"
+                                   "QCheckBox::indicator:unchecked {image: url(assets/icons/star-unchecked.png);}")
+
+            # eventos dos botões
+            self.excluir_btn.clicked.connect(self.remover)
+            self.fav.toggled.connect(self.update_fav)
+            self.editar_btn.clicked.connect(self.mousePressEvent)
 
     def remover(self):
         dlg = DeleteDialog()
         if dlg.exec():
             contato_dao.update_lixeira(self.contato.id, deletado=1)
-            # carrega os dados no mainwindow
-            self.mainWindow.show_contatos_page()
+            self.hide() 
         else:
             pass
 
@@ -50,7 +68,9 @@ class CardContatos(QWidget):
         self.mainWindow.show_contatos_page()
 
     def mousePressEvent(self, event):
-        self.mainWindow.show_criar_contatos(self.contato)
+        if self.mainWindow != None:
+            self.mainWindow.show_criar_contatos(self.contato)
 
-    def __copy__(self):
-        return self
+    def recuperar_contato(self):
+        contato_dao.update_lixeira(self.contato.id, deletado=0)
+        self.hide() 

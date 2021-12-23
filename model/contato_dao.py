@@ -2,7 +2,8 @@ from model import database
 from model.contato import Contatos
 
 
-def insert(contato):  # insere
+def insert(contato):
+    # insere um novo contato
     try:  # tenta executar o código
         conn = database.connect()  # conecta
         cursor = conn.cursor()  # se move no banco
@@ -17,7 +18,8 @@ def insert(contato):  # insere
         conn.close()  # fechar a conexão
 
 
-def update(contato):  # atualiza
+def update(contato):
+    # atualiza todos os campos de um contato
     try:
         conn = database.connect()
         cursor = conn.cursor()
@@ -33,7 +35,10 @@ def update(contato):  # atualiza
         conn.close()
 
 
-def update_favorito(id, favorito):  # atualiza se o contato é um favorito ou não
+def update_favorito(id, favorito):
+    # favorita o contato
+    # favorito = 1 -> contato é favoritado
+    # favorito = 0 -> deixa de ser favorito
     try:
         conn = database.connect()
         cursor = conn.cursor()
@@ -47,6 +52,9 @@ def update_favorito(id, favorito):  # atualiza se o contato é um favorito ou n�
 
 
 def update_lixeira(id, deletado):
+    # atualiza contato
+    # deletado = 1 -> move para lixeira
+    # deletado = 0 -> remove da lixeira
     try:
         conn = database.connect()
         cursor = conn.cursor()
@@ -59,7 +67,8 @@ def update_lixeira(id, deletado):
         conn.close()
 
 
-def delete(id):  # deleta
+def delete(id):
+    # deleta um contato a partir do seu id
     try:
         conn = database.connect()
         cursor = conn.cursor()
@@ -73,7 +82,7 @@ def delete(id):  # deleta
 
 
 def deleteLixeiraAll():
-    # esvazia lixeira
+    # esvazia lixeira - exclui definitivamente todos os contatos existentes na lixeira
     try:
         conn = database.connect()
         cursor = conn.cursor()
@@ -86,7 +95,8 @@ def deleteLixeiraAll():
         conn.close()
 
 
-def selectAll():  # pega todos
+def selectAll():
+    # pega todos contatos salvos
     lista = []
     try:
         conn = database.connect()
@@ -109,7 +119,8 @@ def selectAll():  # pega todos
     return lista
 
 
-def selectDeletedAll():  # pega todos
+def selectDeletedAll():
+    # pega todos contatos movidos para a lixeira
     lista = []
     try:
         conn = database.connect()

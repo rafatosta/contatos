@@ -15,7 +15,7 @@ class CardContatos(QWidget):
         # pega a primeira letra da string
         if contato.nome != "":
             self.icon.setText(contato.nome[0])
-        self.nome.setText(contato.nome[:20] + ' '+contato.sobrenome)
+        self.nome.setText(contato.nome[:20] + ' '+str(contato.sobrenome))
 
         # determina o estilo do label
         style_sheet = f'border: filed; border-radius: 25px; background-color: {self.contato.cor};'

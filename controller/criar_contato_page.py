@@ -27,7 +27,7 @@ class CriarContatoPage(QWidget):
 
     def carrega_contato(self):
         self.nome_label.setText(
-            self.contato.nome + " " + self.contato.sobrenome)
+            self.contato.nome + " " + str(self.contato.sobrenome))
         self.nome.setText(self.contato.nome)
         self.sobrenome.setText(self.contato.sobrenome)
         self.email.setText(self.contato.email)

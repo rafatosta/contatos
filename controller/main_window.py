@@ -21,6 +21,15 @@ class MainWindow(QMainWindow):
         self.contatos_btn.clicked.connect(self.show_contatos_page)
         self.lixeira.clicked.connect(self.show_lixeira_page)
 
+        #evendo da barra de pesquisa
+        self.pesquisar.textEdited.connect(self.goPesquisa)
+
+
+    def goPesquisa(self,texto):
+        print(texto)
+        print(self.painel.currentIndex())
+
+
     def show_contatos_page(self):
         self.painel.insertWidget(0, ContatosPage(self))
         self.painel.setCurrentIndex(0)
